@@ -1,0 +1,15 @@
+{
+    "name": "hackusach-server",
+    "version": "1.0.0",
+    "description": "Document and Mockup for Readme.md.",
+    "main": "index.js",
+    "scripts": {
+      "start": "drakov -f README.md --disableCORS --header Authorization -p 8080",
+      "build-docs": "aglio --theme-variables slate --theme-full-width -i README.md -o index.html",
+      "build-debug": "aglio --theme-variables slate --theme-full-width -i README.md -s",
+      "dev": "drakov -f README.md --disableCORS --ignoreHeader Content-Type --ignoreHeader Authorization --watch "
+    },
+    "author": "Jonás Varas Fuentes",
+    "license": "ISC"
+  }
+  
