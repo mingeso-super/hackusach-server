@@ -31,13 +31,13 @@ public class AlumnoController {
     @GetMapping("{id}")
     public Alumno getAlumno(@PathVariable long id) throws AlumnoNotFound {
 
-        Optional<Alumno> product = alumnoRepository.findById(id);
+        Optional<Alumno> alumno = alumnoRepository.findById(id);
         
-        if (!product.isPresent()) {
+        if (!alumno.isPresent()) {
             throw new AlumnoNotFound(id);
         }
 
-        return product.get();
+        return alumno.get();
     }
 
     @PostMapping
