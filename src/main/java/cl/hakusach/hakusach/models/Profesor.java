@@ -1,7 +1,6 @@
 package cl.hakusach.hakusach.models;
 
-import java.util.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -36,5 +35,14 @@ public class Profesor {
     @Size(max = 200)
     @NotNull
     private String apellidos;
+
+    @Size(max = 100)
+    @NotNull
+    @Column(unique=true)
+    private String username;
+
+    @Size(max = 100)
+    @NotNull
+    private String password;
 
 }

@@ -8,4 +8,6 @@ import cl.hakusach.hakusach.models.Profesor;
 @Repository
 public interface ProfesorRepository extends CrudRepository<Profesor, Long> {
 
+    public Profesor findByUsername(String username);
+
 }

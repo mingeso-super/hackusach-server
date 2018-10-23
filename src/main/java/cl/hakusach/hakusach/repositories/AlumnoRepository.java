@@ -8,4 +8,6 @@ import cl.hakusach.hakusach.models.Alumno;
 @Repository
 public interface AlumnoRepository extends CrudRepository<Alumno, Long> {
 
+    public Alumno findByUsername(String username);
+
 }
