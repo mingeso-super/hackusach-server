@@ -25,6 +25,82 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
     }
 
+## Alumnos [/api/v1/alumnos/]
+
+## Creacion [POST]
+
++ Request(application/json)
+
+    + Body
+    {
+        "nombres": "nombre test",
+        "apellidos": "apellido test",
+        "username": "mai@mail.dom",
+        "password": "pass"
+    }
+
++ Response 200 (application/json)
+
+    + Body
+    {
+        "id": 1,
+        "nombres": "nombre test",
+        "apellidos": "apellido test",
+        "username": "mai@mail.dom",
+        "password": "pass"
+    }
+
+## Alumnos [/api/v1/alumnos/:id]
+
+## Update [GET]
+
++ Request(application/json)
+
++ Response 200 (application/json)
+
+    + Body
+    {
+        "id": 1,
+        "nombres": "nombre modificado",
+        "apellidos": "apellido test",
+        "username": "mai@mail.dom",
+        "password": "pass"
+    }
+
+## Alumnos [/api/v1/alumnos/:id]
+
+## Update [PUT]
+
++ Request(application/json)
+
+    + Body
+    {
+        "nombres": "nombre modificado",
+        "apellidos": "apellido test",
+        "username": "mai@mail.dom",
+        "password": "pass"
+    }
+
++ Response 200 (application/json)
+
+    + Body
+    {
+        "id": 1,
+        "nombres": "nombre modificado",
+        "apellidos": "apellido test",
+        "username": "mai@mail.dom",
+        "password": "pass"
+    }
+
+## Alumnos [/api/v1/alumnos/:id]
+
+## Eliminar [DELETE]
+
++ Request(application/json)
+
++ Response 200 (application/json)
+
+
 
 ## Explicación
 
