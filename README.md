@@ -100,6 +100,33 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 + Response 200 (application/json)
 
+## Alumnos [/api/v1/alumnos/all]
+
+## Update [GET]
+
++ Request(application/json)
+
++ Response 200 (application/json)
+
+    + Body
+    [
+        {
+            "id": 1,
+            "nombres": "nombre modificado",
+            "apellidos": "apellido test",
+            "username": "mai@mail.dom",
+            "password": "pass"
+        },
+        {
+            "id": 2,
+            "nombres": "nombre test2",
+            "apellidos": "apellido test",
+            "username": "mai2@mail.dom",
+            "password": "pass"
+        }
+
+    ]
+
 
 
 ## Explicación
