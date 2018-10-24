@@ -52,7 +52,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Alumnos [/api/v1/alumnos/:id]
 
-### Update [GET]
+### Obtener [GET]
 
 + Request(application/json)
 
@@ -102,7 +102,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Alumnos [/api/v1/alumnos/all]
 
-### Update [GET]
+### Obtener [GET]
 
 + Request(application/json)
 
@@ -154,7 +154,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Profesores [/api/v1/profesores/:id]
 
-### Update [GET]
+### Obtener [GET]
 
 + Request(application/json)
 
@@ -204,7 +204,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Profesores [/api/v1/profesores/all]
 
-### Update [GET]
+### Obtener [GET]
 
 + Request(application/json)
 
@@ -228,6 +228,101 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
         }
 
     ]
+
+## Enunciados [/api/v1/enunciados/]
+### Creacion [POST]
+
++ Request(application/json)
+
+    + Body
+    {
+        "titulo": "Problema Vendedor de Cecina en ciudad Escoria",
+        "descripcion": "El vendedor de cecinas debe ingeniarselas en el yermo, si los conocimientos del nuevo mundo ...",
+        "entradas": ["1", "2"],
+        "salidas": ["4", "8"]
+    }
+
++ Response 200 (application/json)
+
+    + Body
+    {
+        "id": 1,
+        "titulo": "Problema Vendedor de Cecina en ciudad Escoria",
+        "descripcion": "El vendedor de cecinas debe ingeniarselas en el yermo, si los conocimientos del nuevo mundo ...",
+        "entradas": ["1", "2"],
+        "salidas": ["4", "8"]
+    }
+
+## Enunciados [/api/v1/enunciados/:id]
+### Obtener [GET]
+
++ Request(application/json)
+
++ Response 200 (application/json)
+
+    + Body
+    {
+        "id": 1,
+        "titulo": "Problema Vendedor de Cecina en ciudad Escoria",
+        "descripcion": "El vendedor de cecinas debe ingeniarselas en el yermo, si los conocimientos del nuevo mundo ...",
+        "entradas": ["1", "2"],
+        "salidas": ["4", "8"]
+    }
+
+## Enunciados [/api/v1/enunciados/:id]
+### Obtener [PUT]
+
++ Request(application/json)
+
+    + Body
+    {
+        "titulo": "Problema Vendedor de Cecina en ciudad Escoria v2 modificada y version extrema",
+        "descripcion": "El vendedor de cecinas debe ingeniarselas en el yermo, si los conocimientos del nuevo mundo ...",
+        "entradas": ["1", "2"],
+        "salidas": ["4", "8"]
+    }
+
++ Response 200 (application/json)
+
+    + Body
+    {
+        "id": 1,
+        "titulo": "Problema Vendedor de Cecina en ciudad Escoria v2 modificada y version extrema",
+        "descripcion": "El vendedor de cecinas debe ingeniarselas en el yermo, si los conocimientos del nuevo mundo ...",
+        "entradas": ["1", "2"],
+        "salidas": ["4", "8"]
+    }
+
+## Enunciados [/api/v1/enunciados/:id]
+### Obtener [DELETE]
+
++ Request(application/json)
+
++ Response 200 (application/json)
+
+## Enunciados [/api/v1/enunciados/all]
+### Obtener [GET]
+
++ Request(application/json)
+
++ Response 200 (application/json)
+
+    + Body
+        [
+            {
+                "id": 1,
+                "titulo": "Problema Vendedor de Cecina en ciudad Escoria",
+                "descripcion": "El vendedor de cecinas debe ingeniarselas en el yermo, si los conocimientos del nuevo mundo ...",
+                "entradas": ["1", "2"],
+                "salidas": ["4", "8"]
+            },
+            {
+                "id": 2,
+                "titulo": "Problema Vendedor Viajero",
+                "descripcion": "El vendedor viajero debe encontrar su camino , de otra forma la mafia se llevara a su familia...",
+                "entradas": ["1", "2"],
+                "salidas": ["4", "8"]
+            }
 
 
 ## Explicación
