@@ -6,7 +6,7 @@
 Obtención de token de autenticación para obtener acceso al sistema. El token es retornado desde el Header, 
 por esa razón se utiliza el Access-Control-Headers, de otra forma no sería posible acceder al token.
 
-## Login Success  [POST]
+### Login Success  [POST]
 + Request(application/json)
 
     + Body
@@ -27,7 +27,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Alumnos [/api/v1/alumnos/]
 
-## Creacion [POST]
+### Creacion [POST]
 
 + Request(application/json)
 
@@ -52,7 +52,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Alumnos [/api/v1/alumnos/:id]
 
-## Update [GET]
+### Update [GET]
 
 + Request(application/json)
 
@@ -69,7 +69,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Alumnos [/api/v1/alumnos/:id]
 
-## Update [PUT]
+### Update [PUT]
 
 + Request(application/json)
 
@@ -94,7 +94,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Alumnos [/api/v1/alumnos/:id]
 
-## Eliminar [DELETE]
+### Eliminar [DELETE]
 
 + Request(application/json)
 
@@ -102,7 +102,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Alumnos [/api/v1/alumnos/all]
 
-## Update [GET]
+### Update [GET]
 
 + Request(application/json)
 
@@ -129,7 +129,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Profesores [/api/v1/profesores/]
 
-## Creacion [POST]
+### Creacion [POST]
 
 + Request(application/json)
 
@@ -154,7 +154,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Profesores [/api/v1/profesores/:id]
 
-## Update [GET]
+### Update [GET]
 
 + Request(application/json)
 
@@ -171,7 +171,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Alumnos [/api/v1/profesores/:id]
 
-## Update [PUT]
+### Update [PUT]
 
 + Request(application/json)
 
@@ -196,7 +196,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Profesores [/api/v1/profesores/:id]
 
-## Eliminar [DELETE]
+### Eliminar [DELETE]
 
 + Request(application/json)
 
@@ -204,7 +204,7 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
 ## Profesores [/api/v1/profesores/all]
 
-## Update [GET]
+### Update [GET]
 
 + Request(application/json)
 
