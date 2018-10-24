@@ -324,6 +324,26 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
                 "salidas": ["4", "8"]
             }
 
+## Ejecucion de prueba Python [/api/v1/test/program/]
+### Creacion [POST]
+
++ Request(application/json)
+
+    + Body
+    {
+        "stdin": "42",
+        "lang": "PYTHON",
+        "program": "print(input('Number from stdin: '))"
+    }
+
++ Response 200 (application/json)
+
+    + Body
+    {
+        "stdout": "Number from stdin: 42\n",
+        "stderr": "",
+        "error": ""
+    }
 
 ## Explicación
 
