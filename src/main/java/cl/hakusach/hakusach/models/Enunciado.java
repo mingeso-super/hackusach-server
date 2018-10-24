@@ -30,9 +30,13 @@ public class Enunciado {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
+    @Size(max = 90)
+    @NotNull
+    private String titulo;
+
     @Size(max = 500)
     @NotNull
-    private String enunciado;
+    private String descripcion;
 
     @ElementCollection(targetClass=String.class)
     private List<String> entradas;

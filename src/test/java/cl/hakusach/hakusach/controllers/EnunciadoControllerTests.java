@@ -42,7 +42,7 @@ public class EnunciadoControllerTests {
 	public void fullCrud() throws Exception {
 
         Enunciado enunciado = Enunciado.builder()
-            .enunciado("Test este es un problema de tests")
+            .titulo("Test este es un problema de tests")
             .build();
         
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -60,7 +60,7 @@ public class EnunciadoControllerTests {
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Enunciado.class);
 
         enunciado = Enunciado.builder()
-            .enunciado("Enunciado Modificado")
+            .titulo("Enunciado Modificado")
             .build();
         
         requestBuilder = MockMvcRequestBuilders
@@ -78,7 +78,7 @@ public class EnunciadoControllerTests {
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Enunciado.class);
 
         enunciado = Enunciado.builder()
-            .enunciado("Enunciado Modificado")
+            .titulo("Enunciado Modificado")
             .build();
         
         requestBuilder = MockMvcRequestBuilders
