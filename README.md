@@ -2,6 +2,30 @@
 
 # API 
 
+## Login [/login]
+Obtención de token de autenticación para obtener acceso al sistema. El token es retornado desde el Header, 
+por esa razón se utiliza el Access-Control-Headers, de otra forma no sería posible acceder al token.
+
+## Login Success  [POST]
++ Request(application/json)
+
+    + Body
+    {
+        "username": "userTest",
+        "password": "magicpass"
+    }
+
++ Response 200 (application/json)
+    
+    + Headers
+        Authorization: bearer 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+        Access-Control-Expose-Headers: Authorization
+    + Body
+    {
+
+    }
+
+
 ## Explicación
 
 Se listarán las funcionalidades de la API así como sus entradas y salidas, esto 
