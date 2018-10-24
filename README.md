@@ -127,6 +127,107 @@ por esa razón se utiliza el Access-Control-Headers, de otra forma no sería pos
 
     ]
 
+## Profesores [/api/v1/profesores/]
+
+## Creacion [POST]
+
++ Request(application/json)
+
+    + Body
+    {
+        "nombres": "nombre test",
+        "apellidos": "apellido test",
+        "username": "mai@mail.dom",
+        "password": "pass"
+    }
+
++ Response 200 (application/json)
+
+    + Body
+    {
+        "id": 1,
+        "nombres": "nombre test",
+        "apellidos": "apellido test",
+        "username": "mai@mail.dom",
+        "password": "pass"
+    }
+
+## Profesores [/api/v1/profesores/:id]
+
+## Update [GET]
+
++ Request(application/json)
+
++ Response 200 (application/json)
+
+    + Body
+    {
+        "id": 1,
+        "nombres": "nombre modificado",
+        "apellidos": "apellido test",
+        "username": "mai@mail.dom",
+        "password": "pass"
+    }
+
+## Alumnos [/api/v1/profesores/:id]
+
+## Update [PUT]
+
++ Request(application/json)
+
+    + Body
+    {
+        "nombres": "nombre modificado",
+        "apellidos": "apellido test",
+        "username": "mai@mail.dom",
+        "password": "pass"
+    }
+
++ Response 200 (application/json)
+
+    + Body
+    {
+        "id": 1,
+        "nombres": "nombre modificado",
+        "apellidos": "apellido test",
+        "username": "mai@mail.dom",
+        "password": "pass"
+    }
+
+## Profesores [/api/v1/profesores/:id]
+
+## Eliminar [DELETE]
+
++ Request(application/json)
+
++ Response 200 (application/json)
+
+## Profesores [/api/v1/profesores/all]
+
+## Update [GET]
+
++ Request(application/json)
+
++ Response 200 (application/json)
+
+    + Body
+    [
+        {
+            "id": 1,
+            "nombres": "nombre modificado",
+            "apellidos": "apellido test",
+            "username": "mai@mail.dom",
+            "password": "pass"
+        },
+        {
+            "id": 2,
+            "nombres": "nombre test2",
+            "apellidos": "apellido test",
+            "username": "mai2@mail.dom",
+            "password": "pass"
+        }
+
+    ]
 
 
 ## Explicación
