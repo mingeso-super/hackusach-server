@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,7 +45,6 @@ public class EnunciadoController {
         return enunciadoStored;
     }
 
-    @CrossOrigin
     @PutMapping("{id}")
     public Enunciado updateEnunciado(@RequestBody Enunciado enunciado, @PathVariable long id) throws EnunciadoNotFound {
 
@@ -63,7 +61,6 @@ public class EnunciadoController {
         return enunciado;
     }
 
-    @CrossOrigin
     @DeleteMapping("{id}")
     public void deleteEnunciado(@PathVariable long id) {
         enunciadoRepository.deleteById(id);
