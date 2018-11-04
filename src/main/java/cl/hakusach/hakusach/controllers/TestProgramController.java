@@ -31,9 +31,20 @@ public class TestProgramController{
 
         switch(request.getLang()) {
             case Languages.C_LANG:
+                programs.add(FileReference.builder()
+                    .name("main.c")
+                    .content(request.getProgram())
+                    .build()
+                );
+                break;
             case Languages.JAVA_LANG:
-                throw new LanguageNotSupported();
-
+                programs.add(FileReference.builder()
+                    .name("Main.java")
+                    .content(request.getProgram())
+                    .build()
+                );
+                break;
+                
             case Languages.PYTHON_LANG:
                 // Program
                 programs.add(FileReference.builder()
@@ -44,7 +55,8 @@ public class TestProgramController{
                 break;
 
             default:
-                throw new Exception("Bad Request::");
+                throw new LanguageNotSupported();
+
         }
 
         GlotApiRequest req = GlotApiRequest.builder()
