@@ -29,34 +29,34 @@ public class TestProgramController{
         
         List<FileReference> programs = new ArrayList<>();
 
-        switch(request.getLang()) {
-            case Languages.C_LANG:
-                programs.add(FileReference.builder()
-                    .name("main.c")
-                    .content(request.getProgram())
-                    .build()
-                );
-                break;
-            case Languages.JAVA_LANG:
-                programs.add(FileReference.builder()
-                    .name("Main.java")
-                    .content(request.getProgram())
-                    .build()
-                );
-                break;
-                
-            case Languages.PYTHON_LANG:
-                // Program
-                programs.add(FileReference.builder()
-                    .name("main.py")
-                    .content(request.getProgram())
-                    .build()
-                );
-                break;
-
-            default:
-                throw new LanguageNotSupported();
-
+        Languages lang = null;
+        
+        if (request.getLang().compareTo(Languages.C_LANG.getLanguage()) == 0) {
+            programs.add(FileReference.builder()
+                .name("main.c")
+                .content(request.getProgram())
+                .build()
+            );
+            lang = Languages.C_LANG;
+        }
+        else if (request.getLang().compareTo(Languages.JAVA_LANG.getLanguage()) ==0) {
+            programs.add(FileReference.builder()
+                .name("Main.java")
+                .content(request.getProgram())
+                .build()
+            );
+            lang = Languages.JAVA_LANG;
+        }
+        else if (request.getLang().compareTo(Languages.PYTHON_LANG.getLanguage()) == 0) {           
+            programs.add(FileReference.builder()
+                .name("main.py")
+                .content(request.getProgram())
+                .build()
+            );
+            lang = Languages.PYTHON_LANG;
+        }
+        else {
+            throw new LanguageNotSupported();
         }
 
         GlotApiRequest req = GlotApiRequest.builder()
@@ -64,7 +64,7 @@ public class TestProgramController{
                     .files(programs)
                     .build();
         
-        return service.sendProgram(req);
+        return service.sendProgram(req, lang);
     }
 
 
