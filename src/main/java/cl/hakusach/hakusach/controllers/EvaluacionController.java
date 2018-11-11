@@ -120,6 +120,30 @@ public class EvaluacionController {
     }
 
 
+    @PostMapping("/{idAlumno}/enunciado/{idEnunciado}/evaluacion/{idEvaluacion}/evaluate")
+    public Evaluacion evaluate(@PathVariable long idAlumno, @PathVariable long idEnunciado, @PathVariable long idEvaluacion, @RequestBody Evaluacion evaluacion) throws Exception {
+        ValidatePath(idAlumno, idEnunciado);
+
+
+        Optional<Evaluacion> result = evaluacionRepository.findById(idEvaluacion);
+
+        if(!result.isPresent()) {
+            throw new EvaluacionNotFound(idEvaluacion);
+        }
+
+        Evaluacion updateEvaluacion = result.get().toBuilder()
+            .code(evaluacion.getCode())
+            .build();
+
+        updateEvaluacion = evaluacionRepository.save(updateEvaluacion);
+
+        // Evaluacion
+        
+
+
+        return updateEvaluacion;
+    }
+
 
 
 
