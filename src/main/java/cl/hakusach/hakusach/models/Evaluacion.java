@@ -24,7 +24,6 @@ import lombok.ToString;
 @Builder(toBuilder=true)
 public class Evaluacion {
 
-    // Put a Factory Here
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
@@ -43,5 +42,7 @@ public class Evaluacion {
     @Column
     @NotNull
     private Long enunciadoId;
+
+    private float score;
 
 }

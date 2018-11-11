@@ -26,7 +26,7 @@ public class GlotService {
         headers.add("Authorization", token);
         HttpEntity<GlotApiRequest> req = new HttpEntity<GlotApiRequest>(request, headers);
 
-        ResponseEntity<GlotApiResponse> res = restTemplate.exchange(url + lang.getVersion(),HttpMethod.POST, req, GlotApiResponse.class);
+        ResponseEntity<GlotApiResponse> res = restTemplate.exchange(url + lang.getVersion(), HttpMethod.POST, req, GlotApiResponse.class);
 
         return res.getBody();
     }
