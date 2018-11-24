@@ -15,7 +15,10 @@ import cl.hakusach.hakusach.models.Languages;
 import cl.hakusach.hakusach.requests.TestProgramRequest;
 import cl.hakusach.hakusach.requests.GlotApiRequest;
 import cl.hakusach.hakusach.requests.GlotApiRequest.FileReference;
+import cl.hakusach.hakusach.responses.CheckResult;
 import cl.hakusach.hakusach.responses.GlotApiResponse;
+
+import cl.hakusach.hakusach.factory.*;
 
 @RestController
 @RequestMapping("/api/v1/test/")
@@ -23,6 +26,9 @@ public class TestProgramController{
 
     @Autowired
     private GlotService service;
+
+    @Autowired
+    PipelineFactory factory;
 
     @PostMapping("program/")
     public GlotApiResponse testProgram(@RequestBody TestProgramRequest request) throws Exception {
@@ -67,5 +73,23 @@ public class TestProgramController{
         return service.sendProgram(req, lang);
     }
 
+    @PostMapping("program/check")
+    public Object checkProgram(@RequestBody TestProgramRequest request) throws LanguageNotSupported {
+
+        Pipeline pipeline = factory.createPipeline(request.getLang());
+
+        if (pipeline == null) {
+            throw new LanguageNotSupported();
+        }
+
+        pipeline.analyze(request.getProgram());
+
+        return CheckResult.builder()
+            .comment(pipeline.getCommentsResult())
+            .mainComment(pipeline.getMainCommentsResult())
+            .naming(pipeline.getVariablesResult())
+            .format(pipeline.getIdentationResult())
+            .build();
+    }
 
 }

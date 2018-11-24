@@ -1,8 +1,12 @@
 package cl.hakusach.hakusach.factory;
 
 import cl.hakusach.hakusach.models.Languages;
+
+import org.springframework.stereotype.Component;
+
 import cl.hakusach.hakusach.analyzers.*;
 
+@Component
 public class PipelineFactory implements AbstractPipelineFactory {
 
     @Override
