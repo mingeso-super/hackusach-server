@@ -31,6 +31,11 @@ public class GlotService {
         return res.getBody();
     }
 
+    public DelegateService assync() {
+
+        return new DelegateServiceImpl(this);
+    }
+
 
 
 }
