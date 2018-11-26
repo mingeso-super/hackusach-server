@@ -27,6 +27,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
     private AlumnoRepository alumnoRepository;
+
+    @Autowired
     private ProfesorRepository profesorRepository; 
 
 
