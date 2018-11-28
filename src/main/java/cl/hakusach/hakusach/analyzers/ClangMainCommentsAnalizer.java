@@ -1,5 +1,6 @@
 package cl.hakusach.hakusach.analyzers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClangMainCommentsAnalizer implements Analyzer {
@@ -9,11 +10,9 @@ public class ClangMainCommentsAnalizer implements Analyzer {
         
 
         
+        List<Result> results = new ArrayList<>();
 
-
-
-
-        return null;
+        return results;
 	}
 
 }

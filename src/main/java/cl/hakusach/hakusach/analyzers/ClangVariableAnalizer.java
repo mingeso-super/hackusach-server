@@ -1,5 +1,6 @@
 package cl.hakusach.hakusach.analyzers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClangVariableAnalizer implements Analyzer {
@@ -10,10 +11,9 @@ public class ClangVariableAnalizer implements Analyzer {
 
         
 
+        List<Result> results = new ArrayList<>();
 
-
-
-        return null;
+        return results;
 	}
 
 }

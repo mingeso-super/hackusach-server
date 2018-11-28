@@ -1,5 +1,6 @@
 package cl.hakusach.hakusach.analyzers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClangIdentationAnalizer implements Analyzer {
@@ -8,12 +9,9 @@ public class ClangIdentationAnalizer implements Analyzer {
     public List<Result> check(String code) {
         
 
-        
+        List<Result> results = new ArrayList<>();
 
-
-
-
-        return null;
+        return results;
 	}
 
 }

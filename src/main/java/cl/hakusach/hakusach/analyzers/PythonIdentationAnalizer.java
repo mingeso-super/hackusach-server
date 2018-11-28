@@ -1,5 +1,6 @@
 package cl.hakusach.hakusach.analyzers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PythonIdentationAnalizer implements Analyzer {
@@ -9,11 +10,9 @@ public class PythonIdentationAnalizer implements Analyzer {
         
 
         
+        List<Result> results = new ArrayList<>();
 
-
-
-
-        return null;
+        return results;
 	}
 
 }

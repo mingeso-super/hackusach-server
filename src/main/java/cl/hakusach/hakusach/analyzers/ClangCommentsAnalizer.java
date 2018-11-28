@@ -30,7 +30,7 @@ public class ClangCommentsAnalizer implements Analyzer {
         
         List<Result> results = new ArrayList<>();
 
-        return null;
+        return results;
 	}
 
 }
