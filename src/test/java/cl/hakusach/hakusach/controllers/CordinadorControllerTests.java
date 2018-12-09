@@ -20,10 +20,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.junit.Assert.assertEquals;
 
 import cl.hakusach.hakusach.models.Cordinador;
+import cl.hakusach.hakusach.repositories.AlumnoRepository;
 import cl.hakusach.hakusach.repositories.CordinadorRepository;
+import cl.hakusach.hakusach.repositories.ProfesorRepository;
+import cl.hakusach.hakusach.security.CustomAuthenticationProvider;
+import cl.hakusach.hakusach.security.WebSecurity;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(CordinadorController.class)
+@WebMvcTest({WebSecurity.class, CustomAuthenticationProvider.class, CordinadorController.class})
 public class CordinadorControllerTests {
 
     Logger log = Logger.getLogger(CordinadorControllerTests.class.toString());
@@ -33,6 +37,12 @@ public class CordinadorControllerTests {
 
     static Cordinador buffer = null;
     static Gson gson = new Gson();
+
+    @MockBean
+    private AlumnoRepository alumnoRepository;
+
+    @MockBean
+    private ProfesorRepository profesorRepository;
 
     @MockBean
     private CordinadorRepository repository;
@@ -55,7 +65,7 @@ public class CordinadorControllerTests {
 
 
         MvcResult result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
         log.info("contentString: " + result.getResponse().getContentAsString());
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Cordinador.class);
 
@@ -66,7 +76,7 @@ public class CordinadorControllerTests {
         
         requestBuilder = MockMvcRequestBuilders
                 .put("/api/v1/cordinadores/" + 1)
-                //.contentType(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType("application/json")
                 .content(gson.toJson(profesor)
@@ -74,7 +84,7 @@ public class CordinadorControllerTests {
 
 
         result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
 
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Cordinador.class);
 
@@ -89,7 +99,7 @@ public class CordinadorControllerTests {
 
 
         result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
 
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Cordinador.class);
 
@@ -101,7 +111,7 @@ public class CordinadorControllerTests {
 
 
         result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
     }
 
 }

@@ -20,10 +20,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.junit.Assert.assertEquals;
 
 import cl.hakusach.hakusach.models.Enunciado;
+import cl.hakusach.hakusach.repositories.AlumnoRepository;
 import cl.hakusach.hakusach.repositories.EnunciadoRepository;
+import cl.hakusach.hakusach.repositories.ProfesorRepository;
+import cl.hakusach.hakusach.security.CustomAuthenticationProvider;
+import cl.hakusach.hakusach.security.WebSecurity;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(EnunciadoController.class)
+@WebMvcTest({WebSecurity.class, CustomAuthenticationProvider.class, EnunciadoController.class})
 public class EnunciadoControllerTests {
 
     Logger log = Logger.getLogger(EnunciadoControllerTests.class.toString());
@@ -34,6 +38,12 @@ public class EnunciadoControllerTests {
     static Enunciado buffer = null;
     static Gson gson = new Gson();
     static final String endpoint = "/api/v1/enunciados/";
+
+    @MockBean
+    private AlumnoRepository alumnoRepository;
+
+    @MockBean
+    private ProfesorRepository profesorRepository;
 
     @MockBean
     private EnunciadoRepository repository;
@@ -55,7 +65,7 @@ public class EnunciadoControllerTests {
 
 
         MvcResult result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
         log.info("contentString: " + result.getResponse().getContentAsString());
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Enunciado.class);
 
@@ -73,7 +83,7 @@ public class EnunciadoControllerTests {
 
 
         result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
 
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Enunciado.class);
 
@@ -87,7 +97,7 @@ public class EnunciadoControllerTests {
 
 
         result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
 
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Enunciado.class);
 
@@ -99,7 +109,7 @@ public class EnunciadoControllerTests {
 
 
         result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
     }
 
 }

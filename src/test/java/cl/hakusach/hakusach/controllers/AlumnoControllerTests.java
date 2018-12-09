@@ -21,9 +21,12 @@ import static org.junit.Assert.assertEquals;
 
 import cl.hakusach.hakusach.models.Alumno;
 import cl.hakusach.hakusach.repositories.AlumnoRepository;
+import cl.hakusach.hakusach.repositories.ProfesorRepository;
+import cl.hakusach.hakusach.security.CustomAuthenticationProvider;
+import cl.hakusach.hakusach.security.WebSecurity;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(AlumnoController.class)
+@WebMvcTest({WebSecurity.class, CustomAuthenticationProvider.class, AlumnoController.class})
 public class AlumnoControllerTests {
 
     Logger log = Logger.getLogger(AlumnoControllerTests.class.toString());
@@ -37,6 +40,9 @@ public class AlumnoControllerTests {
     @MockBean
     private AlumnoRepository repository;
 
+    @MockBean
+    private ProfesorRepository profesorRepository;
+    
 	@Test
 	public void fullCrud() throws Exception {
 
@@ -57,7 +63,7 @@ public class AlumnoControllerTests {
 
 
         MvcResult result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
         log.info("contentString: " + result.getResponse().getContentAsString());
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Alumno.class);
 
@@ -77,7 +83,7 @@ public class AlumnoControllerTests {
 
 
         result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
 
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Alumno.class);
 
@@ -93,7 +99,7 @@ public class AlumnoControllerTests {
 
 
         result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
 
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Alumno.class);
 
@@ -105,7 +111,7 @@ public class AlumnoControllerTests {
 
 
         result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
     }
 
 }

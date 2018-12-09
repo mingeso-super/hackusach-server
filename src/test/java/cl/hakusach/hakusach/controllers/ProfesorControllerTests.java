@@ -20,10 +20,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.junit.Assert.assertEquals;
 
 import cl.hakusach.hakusach.models.Profesor;
+import cl.hakusach.hakusach.repositories.AlumnoRepository;
 import cl.hakusach.hakusach.repositories.ProfesorRepository;
+import cl.hakusach.hakusach.security.CustomAuthenticationProvider;
+import cl.hakusach.hakusach.security.WebSecurity;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ProfesorController.class)
+@WebMvcTest({WebSecurity.class, CustomAuthenticationProvider.class, ProfesorController.class})
 public class ProfesorControllerTests {
 
     Logger log = Logger.getLogger(ProfesorControllerTests.class.toString());
@@ -33,6 +36,9 @@ public class ProfesorControllerTests {
 
     static Profesor buffer = null;
     static Gson gson = new Gson();
+
+    @MockBean
+    private AlumnoRepository alumnoRepository;
 
     @MockBean
     private ProfesorRepository repository;
@@ -57,7 +63,7 @@ public class ProfesorControllerTests {
 
 
         MvcResult result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
         log.info("contentString: " + result.getResponse().getContentAsString());
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Profesor.class);
 
@@ -78,7 +84,7 @@ public class ProfesorControllerTests {
 
 
         result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
 
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Profesor.class);
 
@@ -95,7 +101,7 @@ public class ProfesorControllerTests {
 
 
         result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
 
         buffer = gson.fromJson(result.getResponse().getContentAsString(), Profesor.class);
 
@@ -107,7 +113,7 @@ public class ProfesorControllerTests {
 
 
         result = mvc.perform(requestBuilder).andReturn();
-        //assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
+        assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
     }
 
 }
