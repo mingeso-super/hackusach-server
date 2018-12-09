@@ -3,6 +3,8 @@ package cl.hakusach.hakusach.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -98,6 +100,124 @@ public class GlotServiceTest {
         GlotApiResponse response = service.sendProgram(request, Languages.C_LANG);
 
         assertEquals("Hello World!\n", response.getStdout());
+
+    }
+
+    @Test
+    public void testMultiplePython() throws InterruptedException, ExecutionException {
+
+        List<FileReference> programs = new ArrayList<>();
+        // Program
+        programs.add(FileReference.builder()
+            .name("main.py")
+            .content("print(input('Number from stdin: '))")
+            .build()
+        );
+
+        // Completable future
+        List<CompletableFuture<GlotApiResponse>> tasks = new ArrayList<>();
+
+        for(int i = 0; i < 6; i++) {
+            tasks.add(service
+                .assync()
+                .sendProgram(
+                    GlotApiRequest.builder()
+                        .stdin(""+i)
+                        .files(programs)
+                        .build(),
+                        Languages.PYTHON_LANG));
+        }
+
+        for(int i = 0; i < 6; i++) {
+            CompletableFuture.allOf(tasks.get(i)).join();
+        }
+
+        for(int i = 0; i < 6; i++) {
+            assertEquals("Number from stdin: "+i+"\n", tasks.get(i).get().getStdout());
+        }
+
+    }
+
+    @Test
+    public void testMultipleJava() throws InterruptedException, ExecutionException {
+        
+        List<FileReference> programs = new ArrayList<>();
+        // Program
+        programs.add(FileReference.builder()
+            .name("Main.java")
+            .content(
+            "class Main {\n" 
+                + "public static void main(String[] args) {\n"
+                + "System.out.println(\"Hello World!\");\n"
+                + "}\n"
+            +"}\n"
+            )
+            .build()
+        );
+
+        // Completable future
+        List<CompletableFuture<GlotApiResponse>> tasks = new ArrayList<>();
+
+        for(int i = 0; i < 6; i++) {
+            tasks.add(service
+                .assync()
+                .sendProgram(
+                    GlotApiRequest.builder()
+                        .stdin("")
+                        .files(programs)
+                        .build(),
+                        Languages.JAVA_LANG));
+        }
+
+        for(int i = 0; i < 6; i++) {
+            CompletableFuture.allOf(tasks.get(i)).join();
+        }
+
+        for(int i = 0; i < 6; i++) {
+            assertEquals("Hello World!\n", tasks.get(i).get().getStdout());
+        }
+
+    }
+
+    @Test
+    public void testMultipleC() throws InterruptedException, ExecutionException {
+        
+        List<FileReference> programs = new ArrayList<>();
+        // Program
+        programs.add(FileReference.builder()
+            .name("main.c")
+            .content(
+                "#include <stdio.h>\n" +
+                "int main(void) {\n" +
+                    "\tprintf(\"Hello World!\\n\");\n" +
+                    "return 0;" +
+                "}"
+            )
+            .build()
+        );
+
+
+        // Completable future
+        List<CompletableFuture<GlotApiResponse>> tasks = new ArrayList<>();
+
+        for(int i = 0; i < 6; i++) {
+            tasks.add(service
+                .assync()
+                .sendProgram(
+                    GlotApiRequest.builder()
+                        .stdin("")
+                        .files(programs)
+                        .build(),
+                        Languages.C_LANG));
+        }
+
+        for(int i = 0; i < 6; i++) {
+            CompletableFuture.allOf(tasks.get(i)).join();
+        }
+
+        for(int i = 0; i < 6; i++) {
+            assertEquals("Hello World!\n", tasks.get(i).get().getStdout());
+        }
 
     }
 
